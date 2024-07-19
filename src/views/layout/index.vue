@@ -11,14 +11,14 @@ class="img"
 v-show="isDance"
 :class="{'bg01':isDance01,'bg02':isDance02,'bg03':isDance03,'bg04':isDance04}"
 :style="{'left':danceLeft,'top':danceTop}"
-:content="dialog">
+>
   <div class="child">
   </div>
-  <!-- <template #content>
+  <template #content>
       <div class="dialogContent">
-
+        {{ dialog }}
       </div>
-    </template> -->
+    </template>
 </van-badge>
     <audio controls ref="playAudio">
       <source src="@/assets/audio01.mp3">
@@ -204,10 +204,8 @@ export default {
   .bg04 {
     background-image: url('@/assets/images/dance04.gif')
   }
-  // .dialogContent{
-  //   width: 100%;
-  //   height: 100%;
-  //   background-color: pink;
-  // }
+  .dialogContent{
+    margin: 8px;
+  }
 }
 </style>
