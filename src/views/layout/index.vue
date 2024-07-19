@@ -20,7 +20,7 @@ v-show="isDance"
       </div>
     </template>
 </van-badge>
-    <audio controls ref="playAudio">
+    <audio ref="playAudio">
       <source src="@/assets/audio01.mp3">
     </audio>
     <button @click="update">按钮</button>
