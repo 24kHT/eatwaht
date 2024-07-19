@@ -25,7 +25,7 @@ v-show="isDance"
       <source src="@/assets/audio01.mp3">
     </audio>
   <van-button plain type="primary" @click="update">瞅一瞅吃什么</van-button>
-    <van-cell is-link @click="showPopup">展示弹出层</van-cell>
+    <!-- <van-cell is-link @click="showPopup">展示弹出层</van-cell> -->
     <van-popup v-model="show" position="left" round duration="0.3">内容</van-popup>
   </div>
 </template>
@@ -36,12 +36,14 @@ import echarts from 'echarts'
 import { pieOption } from '@/utils/piechart'
 import { randomInt } from '@/utils/randomIndex'
 import { getDialog, getJudgeDialog } from '@/utils/getDialog'
+import { Notify } from 'vant'
 
 export default {
   name: 'layoutIndex',
   mounted () {
     this.myChart = echarts.init(document.getElementById('main'))
     this.myChart.setOption(pieOption)
+    // piecharts检测
     this.myChart.on('click', (params) => {
       console.log(params)
     })
@@ -62,7 +64,10 @@ export default {
       isDance04: false,
       danceLeft: '152px',
       danceTop: '188px',
-      dialog: '哈喽'
+      dialog: '哈喽',
+      msg: '',
+      maxIndex: 0,
+      maxValue: 0
     }
   },
   methods: {
@@ -94,6 +99,10 @@ export default {
           newValue = randomInt(500, 1000)
         } else {
           newValue = randomInt(100, 280)
+        }
+        if (newValue > this.maxValue) {
+          this.maxIndex = index
+          this.maxValue = newValue
         }
         // console.log(index)
         // 更新维护piechart的数据
@@ -163,7 +172,9 @@ export default {
           this.danceTop = '66px'
           this.danceLeft = '-200px'
         } else if (i === 32) {
+          this.msg = '你可以选择吃' + this.$store.getters.food[this.maxIndex].name + '喔哈哈哈，' + this.$store.getters.food[this.maxIndex].name + '以' + this.$store.getters.food[this.maxIndex].value + '的票数胜出~'
           // 清除定时器
+          this.success()
           console.log('定时器被清除')
           this.timerFlag = true
           clearInterval(this.timer)
@@ -179,6 +190,14 @@ export default {
     // 播放音乐
     playMusic () {
       this.$refs.playAudio.play()
+    },
+    // 成功选择美食
+    success () {
+      Notify({
+        type: 'success',
+        message: this.msg,
+        duration: 5000
+      })
     }
   }
 
@@ -221,6 +240,12 @@ export default {
   }
   .dialogContent{
     margin: 8px;
+  }
+  .van-button {
+    position: fixed;
+    bottom: 100px;
+    right: 10px;
+    z-index: 9;
   }
 }
 </style>
