@@ -72,6 +72,11 @@ export default {
       }
       this.danceLeft = '152px'
       this.danceTop = '188px'
+      this.isDance = false
+      this.isDance01 = true
+      this.isDance02 = false
+      this.isDance03 = false
+      this.isDance04 = false
       // 播放音乐
       this.playMusic()
       // 随机选择后可以再次选择
