@@ -12,6 +12,7 @@ v-show="isDance"
 :class="{'bg01':isDance01,'bg02':isDance02,'bg03':isDance03,'bg04':isDance04}"
 :style="{'left':danceLeft,'top':danceTop}"
 >
+
   <div class="child">
   </div>
   <template #content>
@@ -23,7 +24,7 @@ v-show="isDance"
     <audio ref="playAudio">
       <source src="@/assets/audio01.mp3">
     </audio>
-    <van-button plain type="primary" @click="update">朴素按钮</van-button>
+  <van-button plain type="primary" @click="update">瞅一瞅吃什么</van-button>
     <van-cell is-link @click="showPopup">展示弹出层</van-cell>
     <van-popup v-model="show" position="left" round duration="0.3">内容</van-popup>
   </div>
