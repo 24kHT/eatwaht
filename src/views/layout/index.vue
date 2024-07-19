@@ -23,7 +23,7 @@ v-show="isDance"
     <audio ref="playAudio">
       <source src="@/assets/audio01.mp3">
     </audio>
-    <button @click="update">按钮</button>
+    <van-button plain type="primary" @click="update">朴素按钮</van-button>
     <van-cell is-link @click="showPopup">展示弹出层</van-cell>
     <van-popup v-model="show" position="left" round duration="0.3">内容</van-popup>
   </div>
