@@ -113,8 +113,8 @@ export default {
           // 更换位置
           // 第一句对白
           this.dialog = getJudgeDialog(index)
-          this.danceLeft = '250px'
-          this.danceTop = '30px'
+          this.danceLeft = '260px'
+          this.danceTop = '50px'
         } else if (i === 15) {
           // 切换图片
           this.isDance03 = false
@@ -128,26 +128,35 @@ export default {
         } else if (i === 20) {
           // 更换位置
           this.danceLeft = '0px'
-          this.danceTop = '30px'
+          this.danceTop = '50px'
         } else if (i === 21) {
           this.isDance04 = false
           this.isDance01 = true
         } else if (i === 22) {
           // 第四句对白
           this.dialog = '       ' + getJudgeDialog(index)
-        } else if (i === 25) {
+        } else if (i === 24) {
           // 更换位置
           this.danceLeft = '152px'
           this.danceTop = '188px'
           // 第五句对白
           this.dialog = '       ' + getJudgeDialog(index)
-        } else if (i === 26) {
+        } else if (i === 25) {
           this.isDance01 = false
           this.isDance02 = true
-        } else if (i === 28) {
+        } else if (i === 27) {
           this.isDance02 = false
           this.isDance03 = true
-        } else if (i === 50) {
+        } else if (i === 28) {
+          this.danceTop = '280px'
+          this.danceLeft = '200px'
+        } else if (i === 30) {
+          this.danceTop = '66px'
+          this.danceLeft = '-100px'
+        } else if (i === 31) {
+          this.danceTop = '66px'
+          this.danceLeft = '-200px'
+        } else if (i === 32) {
           // 清除定时器
           console.log('定时器被清除')
           this.timerFlag = true
@@ -189,7 +198,7 @@ export default {
     background-size: cover;
     z-index: 9;
     transition-property: left,top;
-    transition-duration: 3s;
+    transition-duration: 2s;
     transition-timing-function:cubic-bezier(.29, 1.01, 5, -0.68);
   }
   .bg01 {
