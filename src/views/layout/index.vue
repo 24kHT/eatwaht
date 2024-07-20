@@ -1,6 +1,13 @@
 <template>
   <div class="layoutIndex">
 
+    <!-- dance图片 -->
+    <ul class="preImg">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
     <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
     <div id="main">
     </div>
@@ -22,6 +29,7 @@ v-show="isDance"
     </template>
 </van-badge>
 
+    <!-- 媒体音乐播放 -->
     <audio ref="playAudio">
       <source src="@/assets/audio01.mp3">
     </audio>
@@ -32,7 +40,6 @@ v-show="isDance"
       {{ preferFood }}
       <van-tag type="success" class="tag-suc">top推荐</van-tag>
     </van-button>
-
   </div>
 </template>
 
@@ -42,8 +49,8 @@ import echarts from 'echarts'
 import { pieOption } from '@/utils/piechart'
 import { randomInt } from '@/utils/randomIndex'
 import { getDialog, getJudgeDialog } from '@/utils/getDialog'
-import { Notify } from 'vant'
 import { mapState } from 'vuex'
+import { Dialog } from 'vant'
 
 export default {
   name: 'layoutIndex',
@@ -205,11 +212,7 @@ export default {
     },
     // 成功选择美食
     success () {
-      Notify({
-        type: 'success',
-        message: this.msg,
-        duration: 5000
-      })
+      Dialog({ message: this.msg })
     },
     handleGo () {
       location.href = 'https://www.xiaohongshu.com/explore/65c02c60000000000a032cf1?app_platform=android&ignoreEngage=true&app_version=8.45.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBl-_7diYJ7Y76DApYNwRYOKj80sZSfJUSyAUG6HVpe6g=&author_share=1&xhsshare=WeixinSession&shareRedId=N0tIMUQ1N0s2NzUyOTgwNjY0OThIPDlP&apptime=1721439828&share_id=349cbdf9ca12487fb295df635baa7fce&wechatWid=0932d1fa217d078b9e06d4622a4dfaaa&wechatOrigin=menu'
@@ -221,6 +224,30 @@ export default {
 
 <style lang="less" scoped>
 .layoutIndex{
+  .preImg {
+    position: fixed;
+    left: -1000px;
+    :nth-child(1) {
+      width: 1px;
+      height: 1px;
+      background-image: url('@/assets/images/dance01.gif');
+    }
+    :nth-child(2) {
+      width: 1px;
+      height: 1px;
+      background-image: url('@/assets/images/dance02.gif');
+    }
+    :nth-child(3) {
+      width: 1px;
+      height: 1px;
+      background-image: url('@/assets/images/dance03.gif');
+    }
+    :nth-child(4) {
+      width: 1px;
+      height: 1px;
+      background-image: url('@/assets/images/dance04.gif');
+    }
+  }
   width: 375px;
   height:500px;
   #main{
