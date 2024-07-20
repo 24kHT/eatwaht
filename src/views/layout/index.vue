@@ -4,7 +4,7 @@
     <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
     <div id="main">
     </div>
-
+<router-view></router-view>
 <!-- dance图片加载位置 -->
 <van-badge
 class="img"
@@ -21,12 +21,18 @@ v-show="isDance"
       </div>
     </template>
 </van-badge>
+
     <audio ref="playAudio">
       <source src="@/assets/audio01.mp3">
     </audio>
-  <van-button plain type="primary" @click="update">瞅一瞅吃什么</van-button>
-    <!-- <van-cell is-link @click="showPopup">展示弹出层</van-cell> -->
-    <van-popup v-model="show" position="left" round duration="0.3">内容</van-popup>
+  <van-button plain type="primary" @click="update" class="btn-pri">瞅一瞅吃什么</van-button>
+
+    <!-- 排行榜 -->
+    <van-button plain type="info" class="btn-inf" @click="handleGo">
+      {{ preferFood }}
+      <van-tag type="success" class="tag-suc">top推荐</van-tag>
+    </van-button>
+
   </div>
 </template>
 
@@ -37,6 +43,7 @@ import { pieOption } from '@/utils/piechart'
 import { randomInt } from '@/utils/randomIndex'
 import { getDialog, getJudgeDialog } from '@/utils/getDialog'
 import { Notify } from 'vant'
+import { mapState } from 'vuex'
 
 export default {
   name: 'layoutIndex',
@@ -67,8 +74,12 @@ export default {
       dialog: '哈喽',
       msg: '',
       maxIndex: 0,
-      maxValue: 0
+      maxValue: 0,
+      preferFood: ''
     }
+  },
+  computed: {
+    ...mapState('pieInfo', ['food'])
   },
   methods: {
     // 随机选择食物函数
@@ -103,6 +114,7 @@ export default {
         if (newValue > this.maxValue) {
           this.maxIndex = index
           this.maxValue = newValue
+          this.preferFood = this.food[index].name
         }
         // console.log(index)
         // 更新维护piechart的数据
@@ -198,13 +210,16 @@ export default {
         message: this.msg,
         duration: 5000
       })
+    },
+    handleGo () {
+      location.href = 'https://www.xiaohongshu.com/explore/65c02c60000000000a032cf1?app_platform=android&ignoreEngage=true&app_version=8.45.0&share_from_user_hidden=true&xsec_source=app_share&type=normal&xsec_token=CBl-_7diYJ7Y76DApYNwRYOKj80sZSfJUSyAUG6HVpe6g=&author_share=1&xhsshare=WeixinSession&shareRedId=N0tIMUQ1N0s2NzUyOTgwNjY0OThIPDlP&apptime=1721439828&share_id=349cbdf9ca12487fb295df635baa7fce&wechatWid=0932d1fa217d078b9e06d4622a4dfaaa&wechatOrigin=menu'
     }
   }
 
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .layoutIndex{
   width: 375px;
   height:500px;
@@ -241,11 +256,24 @@ export default {
   .dialogContent{
     margin: 8px;
   }
-  .van-button {
+  .btn-pri {
     position: fixed;
     bottom: 100px;
     right: 10px;
     z-index: 9;
   }
+  .btn-inf {
+    width: 200px;
+    height: 20px;
+    position: relative;
+    left: 0;
+    text-align: left;
+    .tag-suc {
+      position: absolute;
+      right: 0;
+      top:0;
+    }
+  }
 }
+
 </style>
