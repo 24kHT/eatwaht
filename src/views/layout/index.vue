@@ -15,7 +15,7 @@
 <!-- dance图片加载位置 -->
 <van-badge
 class="img"
-v-show="true"
+v-show="isDance"
 :class="{'bg01':isDance01,'bg02':isDance02,'bg03':isDance03,'bg04':isDance04}"
 :style="{'left':danceLeft,'top':danceTop}"
 >
