@@ -15,7 +15,7 @@
 <!-- dance图片加载位置 -->
 <van-badge
 class="img"
-v-show="isDance"
+v-show="true"
 :class="{'bg01':isDance01,'bg02':isDance02,'bg03':isDance03,'bg04':isDance04}"
 :style="{'left':danceLeft,'top':danceTop}"
 >
@@ -142,7 +142,7 @@ export default {
         } else if (i === 11) {
           // 切换图片
           this.isDance02 = false
-          this.isDance03 = true
+          this.isDance04 = true
         } else if (i === 12) {
           // 更换位置
           // 第一句对白
@@ -151,8 +151,8 @@ export default {
           this.danceTop = '50px'
         } else if (i === 15) {
           // 切换图片
-          this.isDance03 = false
-          this.isDance04 = true
+          this.isDance04 = false
+          this.isDance03 = true
         } else if (i === 16) {
           // 第二句对白
           this.dialog = getJudgeDialog(index)
@@ -262,7 +262,9 @@ export default {
     position: fixed;
     width: 80px;
     height: 100px;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     z-index: 9;
     transition-property: left,top;
     transition-duration: 2s;
